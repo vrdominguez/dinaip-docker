@@ -7,7 +7,7 @@ Run dinaip from [Dinahosting SL](https://www.dinahosting.com) in any docker-comp
 Launch the docker as a daemon with
 
 ```
-docker run -d -e DHUSER=mydinahostinguser -e DHPASS=mydinahostingpass test/dinaip:jessie
+docker run -d -e DHUSER=mydinahostinguser -e DHPASS=mydinahostingpass vrdominguez/dinaip
 ```
 
 ## Add a new zone to update
