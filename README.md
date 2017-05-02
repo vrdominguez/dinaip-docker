@@ -7,7 +7,7 @@ Run dinaip from [Dinahosting SL](https://www.dinahosting.com) in any docker-comp
 Launch the docker as a daemon with
 
 ```
-docker run -d -e DHUSER=mydinahostinguser -e DHPASS=mydinahostingpass vrdominguez/dinaip
+docker run -d -e DHUSER=mydinahostinguser -e DHPASS=mydinahostingpass -v /your/local/dir/for/config:/var/persistent vrdominguez/dinaip
 ```
 
 ## Add a new zone to update
@@ -19,12 +19,10 @@ docker exec -ti container_name_or_id dinaip -a mydomain.com:subdomain
 
 ## Stop dinaip service
 
-Command:
+To stop dinaip and preserve configuration you must use the command:
 
 ```
 docker exec -ti container_name_or_id dinaip -d
 ```
 
-## Known problems
-
-Dinaip configuration is not presserverd between starts (unless you relaunch the last container)
+**WARNING:** With docker stop you will miss your configuration
