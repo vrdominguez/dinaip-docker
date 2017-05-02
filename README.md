@@ -1,4 +1,4 @@
-# Dockerfile for dinaip
+# Dockerfile for dinaip [ubuntu version]
 
 Run dinaip from [Dinahosting SL](https://www.dinahosting.com) in any docker-compatible machine
 
