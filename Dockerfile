@@ -1,14 +1,13 @@
-FROM ubuntu:xenial
+FROM alpine:3.5 
 
 MAINTAINER victor@vrdominguez.es
 
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends perl libwww-perl ca-certificates curl \
+RUN apk update && apk add perl-libwww curl \
 	&& curl -o ./dinaip.tar.gz https://dinahosting.com/utilidades/estandar/aplicaciones/dinaIP-consola.tar.gz \
 	&& tar xzpf ./dinaip.tar.gz -C /tmp/ && rm -f ./dinaip.tar.gz \
 	&& cd /tmp/dinaIP-consola && sh ./install.sh && cd -- && rm -rf /tmp/dinaIP-consola \
-	&& apt-get autoremove -y && apt-get clean -y \
-	&& sed -i '/use Cwd/a no warnings experimental;' /opt/dinaip/dinaip.pl
+	&& sed -i '/use Cwd/a no warnings experimental;' /opt/dinaip/dinaip.pl \
+	&& ln -sf /proc/self/fd/1 /var/log/dinaip.log
 
 ADD bootstrap.sh /
 

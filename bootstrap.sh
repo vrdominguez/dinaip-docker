@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Restore persistent configuration (if exists)
 if [ -f /var/persistent/dinaip.conf ]; then
@@ -12,8 +12,15 @@ echo "[Bootstrap] Starting dinaIP for console..."
 
 # If dinaip started correctly 
 if [ $? -eq 0 ]; then
-	# Send logs to STDOUT and stop if dinaip dies
-	tail --pid=$(pgrep dinaIP) -f /var/log/dinaip.log
+	# Run while dinaip running
+	PID=$(pgrep dinaIP)
+	
+	kill -0 $PID 2>/dev/null
+
+	while [ $? -eq 0 ]; do
+		sleep 1
+		kill -0 $PID 2>/dev/null
+	done
 	
 	if [ -f /etc/dinaip.conf ]; then
 		# Copy config to persistent dir
