@@ -4,8 +4,8 @@ Run dinaip from [Dinahosting SL](https://www.dinahosting.com) in any docker-comp
 
 ## Availiable tags
 
-+ Based on Debian Jessie: vrdominguez/dinaip:latest [(Dokcerfile)](https://github.com/vrdominguez/dinaip-docker/blob/master/Dockerfile)
-+ Based on Alpine Linux:  vrdominguez/dinaip:alpine [(Dokcerfile)](https://github.com/vrdominguez/dinaip-docker/blob/alpine/Dockerfile)
++ Based on Debian Jessie: vrdominguez/dinaip:latest [(Dockerfile)](https://github.com/vrdominguez/dinaip-docker/blob/master/Dockerfile)
++ Based on Alpine Linux: vrdominguez/dinaip:alpine [(Dockerfile)](https://github.com/vrdominguez/dinaip-docker/blob/alpine/Dockerfile)
 
 ## Usage
 
