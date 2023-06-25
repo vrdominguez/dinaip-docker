@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - 'master'
+      - main
   workflow_dispatch:
 
 jobs:
@@ -26,11 +26,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push Debian version
         uses: docker/build-push-action@v4
         with:
-          context: .
+          context: ./debian/
           platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
           push: true
-          tags: vrdominguez/dinaip:latest
+          tags: vrdominguez/dinaip:latest,vrdominguez/dinaip:debian
+
+      - name: Build and push Alpine version
+        uses: docker/build-push-action@v4
+        with:
+          context: ./alpine/
+          platforms: linux/386,linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
+          push: true
+          tags: vrdominguez/dinaip:alpine
       

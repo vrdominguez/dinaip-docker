@@ -4,23 +4,28 @@ Run dinaip from [Dinahosting SL](https://www.dinahosting.com) in any docker-comp
 
 ## Availiable tags
 
-+ Based on Debian Jessie: vrdominguez/dinaip:latest [(Dockerfile)](https://github.com/vrdominguez/dinaip-docker/blob/master/Dockerfile)
-+ Based on Alpine Linux: vrdominguez/dinaip:alpine [(Dockerfile)](https://github.com/vrdominguez/dinaip-docker/blob/alpine/Dockerfile)
++ Based on Debian Bookworm: vrdominguez/dinaip:latest
+  + [(Dockerfile)](/debian/Dockerfile)
+  + [Bootstrap](/debian/bootstrap.sh)
++ Based on Alpine Linux: vrdominguez/dinaip:alpine
+  + [(Dockerfile)](/alpine/Dockerfile)
+  + [Bootstrap](/alpine/bootstrap.sh)
 
 ## Usage
 
-### Start the service 
+### Start the service
 
 Launch the docker as a daemon with
 
-```
+```bash
 docker run -d -e DHUSER=mydinahostinguser -e DHPASS=mydinahostingpass -v /your/local/dir/for/config:/var/persistent vrdominguez/dinaip
 ```
 
 ### Add a new zone to update
 
 Launch the dinaip command in docker container with
-```
+
+```bash
 docker exec -ti container_name_or_id dinaip -a mydomain.com:subdomain
 ```
 
@@ -28,7 +33,7 @@ docker exec -ti container_name_or_id dinaip -a mydomain.com:subdomain
 
 To stop dinaip and preserve configuration you must use the command:
 
-```
+```bash
 docker exec -ti container_name_or_id dinaip -d
 ```
 
