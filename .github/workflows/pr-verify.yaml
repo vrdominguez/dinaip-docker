@@ -22,7 +22,7 @@ jobs:
         with:
           matrix: true
           files: |
-            Dockerfile
+            **/Dockerfile
   
   lint-dockerfiles:
     name: Lint dockerfiles with hadolint
