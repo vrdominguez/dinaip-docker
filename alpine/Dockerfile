@@ -22,7 +22,7 @@ RUN apk update \
         perl-libwww=6.77-r0 \
         curl=8.10.1-r0 \
     && ln -s /opt/dinaip/dinaip.pl /usr/sbin/dinaip \
-    && sed -i '/use Cwd/a no warnings experimental;' /opt/dinaip/dinaip.pl \
+    && sed -i '/use Cwd/a no warnings deprecated;' /opt/dinaip/dinaip.pl \
     && ln -sf /proc/self/fd/1 /var/log/dinaip.log \
     && chmod a+x /bootstrap.sh
 
