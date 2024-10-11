@@ -10,12 +10,12 @@ RUN apk add --no-cache \
 
 FROM debian:bookworm-slim
 
-LABEL matainer="Víctor R. Rodríguez Domínguez <victor@vrdominguez.es>"
+LABEL mantainer="Víctor R. Rodríguez Domínguez <victor@vrdominguez.es>"
 
 ENV DHUSER='mydinahostinguser' \
     DHPASS='mydinahostingpass'
 
-COPY bootstrap.sh /
+COPY --chmod=755 bootstrap.sh /
 COPY --from=downloader /tmp/dinaIP-consola/* /opt/dinaip/
 
 RUN apt-get update \
@@ -29,8 +29,7 @@ RUN apt-get update \
     && ln -s /opt/dinaip/dinaip.pl /usr/sbin/dinaip \
     && apt-get autoremove -y && apt-get clean -y \
     && rm -rf /var/lib/apt/ /var/lib/dpkg/ /var/lib/cache/ /var/lib/log/ \
-    && sed -i '/use Cwd/a no warnings experimental;' /opt/dinaip/dinaip.pl \
-    && chmod a+x /bootstrap.sh
+    && sed -i '/use Cwd/a no warnings experimental;' /opt/dinaip/dinaip.pl
 
 
 CMD ["/bootstrap.sh"]

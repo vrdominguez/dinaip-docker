@@ -9,12 +9,12 @@ RUN apk add --no-cache \
 
 FROM alpine:3.20
 
-LABEL matainer="Víctor R. Rodríguez Domínguez <victor@vrdominguez.es>"
+LABEL mantainer="Víctor R. Rodríguez Domínguez <victor@vrdominguez.es>"
 
 ENV DHUSER='mydinahostinguser' \
     DHPASS='mydinahostingpass'
 
-COPY bootstrap.sh /
+COPY --chmod=755 bootstrap.sh /
 COPY --from=downloader /tmp/dinaIP-consola/* /opt/dinaip/
 
 RUN apk update \
@@ -23,7 +23,6 @@ RUN apk update \
         curl=8.10.1-r0 \
     && ln -s /opt/dinaip/dinaip.pl /usr/sbin/dinaip \
     && sed -i '/use Cwd/a no warnings deprecated;' /opt/dinaip/dinaip.pl \
-    && ln -sf /proc/self/fd/1 /var/log/dinaip.log \
-    && chmod a+x /bootstrap.sh
+    && ln -sf /proc/self/fd/1 /var/log/dinaip.log
 
 CMD ["/bootstrap.sh"]
